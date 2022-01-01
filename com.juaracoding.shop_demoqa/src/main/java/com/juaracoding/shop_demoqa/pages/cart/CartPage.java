@@ -30,7 +30,7 @@ public class CartPage {
 	public void toShop() {
 		btntoshop.click();
 	}
-	
+					
 	@FindBy(css = "#post-6 > div > div > div.cart-collaterals > div.cart_totals > div > a")
 	private WebElement btntocheckout;
 	

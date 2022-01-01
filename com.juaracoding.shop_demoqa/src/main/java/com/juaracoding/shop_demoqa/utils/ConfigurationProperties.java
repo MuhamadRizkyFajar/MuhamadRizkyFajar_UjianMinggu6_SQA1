@@ -22,6 +22,30 @@ public class ConfigurationProperties {
 	
 	@Value("${itemsearch}")
 	private String itemsearch;
+	
+	@Value("${firstname}")
+	private String firstname;
+	
+	@Value("${lastname}")
+	private String lastname;
+	
+	@Value("${country}")
+	private String country;
+	
+	@Value("${address}")
+	private String address;
+	
+	@Value("${city}")
+	private String city;
+	
+	@Value("${province}")
+	private String province;
+	
+	@Value("${postcode}")
+	private String postcode;
+	
+	@Value("${phone}")
+	private String phone;
 
 	public String getBrowser() {
 		return browser;
@@ -41,6 +65,38 @@ public class ConfigurationProperties {
 
 	public String getItemsearch() {
 		return itemsearch;
+	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public String getProvince() {
+		return province;
+	}
+
+	public String getPostcode() {
+		return postcode;
+	}
+
+	public String getPhone() {
+		return phone;
 	}
 	
 	

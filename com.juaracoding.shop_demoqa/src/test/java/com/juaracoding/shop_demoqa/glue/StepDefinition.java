@@ -10,6 +10,7 @@ import com.juaracoding.shop_demoqa.config.AutomationFrameworkConfiguration;
 import com.juaracoding.shop_demoqa.driver.DriverSingleton;
 import com.juaracoding.shop_demoqa.pages.HomePage;
 import com.juaracoding.shop_demoqa.pages.cart.CartPage;
+import com.juaracoding.shop_demoqa.pages.checkout.CheckoutPage;
 import com.juaracoding.shop_demoqa.pages.login.LoginPageWP;
 import com.juaracoding.shop_demoqa.pages.myaccount.MyAccountPage;
 import com.juaracoding.shop_demoqa.pages.shop.ShopPage;
@@ -38,6 +39,7 @@ public class StepDefinition {
 	private LoginPageWP loginpagewp;
 	private CartPage cartpage;
 	private ShopPage shoppage;
+	private CheckoutPage checkoutpage;
 	ExtentTest test;
 	static ExtentReports report = new ExtentReports("src/main/resources/reporttest.html");
 	
@@ -52,6 +54,7 @@ public class StepDefinition {
 		loginpagewp = new LoginPageWP();
 		cartpage = new CartPage();
 		shoppage = new ShopPage();
+		checkoutpage = new CheckoutPage();
 		TestCase[] tests = TestCase.values();
 		test = report.startTest(tests[Utils.testcount].getTestname());
 		Utils.testcount++;
@@ -136,6 +139,32 @@ public class StepDefinition {
 		if (shoppage.textItem().isDisplayed()) {
 			System.out.println("scenario passed");
 			System.out.println(shoppage.textItem().getText());
+			test.log(LogStatus.PASS, "user has added item to cart");
+		}else {
+			System.out.println("scenario failed");
+			test.log(LogStatus.ERROR, "user has added item to cart");
+		}
+	}
+	
+	@When("^user go to cart page")
+	public void intoCart() {
+		shoppage.toCart();
+	}
+	
+	@When("^user go to checkout page and fill his identity")
+	public void intoCheckOut() {
+		cartpage.toCheckout();
+		checkoutpage.CheckOut(configuration.getFirstname(), configuration.getLastname(), 
+				configuration.getCountry(), configuration.getAddress(), 
+				configuration.getCity(), configuration.getProvince(), 
+				configuration.getPostcode(), configuration.getPhone());
+	}
+	
+	@Then("^user completed his order")
+	public void CheckedOut() {
+		if (checkoutpage.getTextOrder().isDisplayed()) {
+			System.out.println("scenario passed");
+			System.out.println(checkoutpage.getTextOrder().getText());
 			test.log(LogStatus.PASS, "user has added item to cart");
 		}else {
 			System.out.println("scenario failed");
