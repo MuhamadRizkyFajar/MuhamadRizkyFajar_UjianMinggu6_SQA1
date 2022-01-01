@@ -60,6 +60,7 @@ public class StepDefinition {
 		Utils.testcount++;
 	}
 	
+	//1. Register Account
 	@Given("^user go to th website")
 	public void toWebsite() {
 		driver = DriverSingleton.getDriver();
@@ -93,6 +94,7 @@ public class StepDefinition {
 		}
 	}
 	
+	//2. Login Account
 	@When("^user login account")
 	public void isLogin() {
 		myaccountpage.Logout();
@@ -112,6 +114,7 @@ public class StepDefinition {
 		}
 	}
 	
+	//3. Add item to cart
 	@When("^user go to shop")
 	public void intoShop() {
 		myaccountpage.toCart();
@@ -119,6 +122,7 @@ public class StepDefinition {
 		test.log(LogStatus.PASS, "user go to shop");
 	}
 	
+	// -- 1 Shoes from Compare Product
 	@When("^user add first item from compare product")
 	public void isAddItem1() {
 		shoppage.addItem1();
@@ -126,6 +130,7 @@ public class StepDefinition {
 		test.log(LogStatus.PASS, "user add first item from compare product");
 	}
 	
+	// -- 1 Glass from Search product
 	@When("^user add second item from search product")
 	public void isAddItem2() {
 		shoppage.SearchItem(configuration.getItemsearch());
@@ -146,9 +151,11 @@ public class StepDefinition {
 		}
 	}
 	
+	// 4. Cart Page, Proceed to Checkout
 	@When("^user go to cart page")
 	public void intoCart() {
 		shoppage.toCart();
+		test.log(LogStatus.PASS, "user go to cart page");
 	}
 	
 	@When("^user go to checkout page and fill his identity")
@@ -158,6 +165,7 @@ public class StepDefinition {
 				configuration.getCountry(), configuration.getAddress(), 
 				configuration.getCity(), configuration.getProvince(), 
 				configuration.getPostcode(), configuration.getPhone());
+		test.log(LogStatus.PASS, "user go to checkout page and fill his identity");
 	}
 	
 	@Then("^user completed his order")
@@ -165,10 +173,10 @@ public class StepDefinition {
 		if (checkoutpage.getTextOrder().isDisplayed()) {
 			System.out.println("scenario passed");
 			System.out.println(checkoutpage.getTextOrder().getText());
-			test.log(LogStatus.PASS, "user has added item to cart");
+			test.log(LogStatus.PASS, "user completed his order");
 		}else {
 			System.out.println("scenario failed");
-			test.log(LogStatus.ERROR, "user has added item to cart");
+			test.log(LogStatus.ERROR, "user completed his order");
 		}
 	}
 	
