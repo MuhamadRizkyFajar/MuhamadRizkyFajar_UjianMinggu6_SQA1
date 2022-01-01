@@ -86,7 +86,8 @@ public class StepDefinition {
 	public void AccountCreated() {
 		if (driver.getCurrentUrl().equalsIgnoreCase(
 				"https://shop.demoqa.com/my-account/")) {
-			System.out.println("scenario passed");
+			System.out.println("scenario: create passed");
+			System.out.println();
 			test.log(LogStatus.PASS, "user finnish create account");
 		}else {
 			System.out.println("scenario failed");
@@ -105,8 +106,9 @@ public class StepDefinition {
 	@Then("^user has logged into the website")
 	public void loggedInto() {
 		if (myaccountpage.textDisplayed().isDisplayed()) {
-			System.out.println("scenario passed");
+			System.out.println("scenario: login passed");
 			System.out.println(myaccountpage.textDisplayed().getText());
+			System.out.println();
 			test.log(LogStatus.PASS, "user has logged into the website");
 		}else {
 			System.out.println("scenario failed");
@@ -142,8 +144,9 @@ public class StepDefinition {
 	@Then("^user has added item to cart")
 	public void newCart() {
 		if (shoppage.textItem().isDisplayed()) {
-			System.out.println("scenario passed");
+			System.out.println("scenario: add item passed");
 			System.out.println(shoppage.textItem().getText());
+			System.out.println();
 			test.log(LogStatus.PASS, "user has added item to cart");
 		}else {
 			System.out.println("scenario failed");
@@ -171,7 +174,7 @@ public class StepDefinition {
 	@Then("^user completed his order")
 	public void CheckedOut() {
 		if (checkoutpage.getTextOrder().isDisplayed()) {
-			System.out.println("scenario passed");
+			System.out.println("scenario: checkout passed");
 			System.out.println(checkoutpage.getTextOrder().getText());
 			test.log(LogStatus.PASS, "user completed his order");
 		}else {
